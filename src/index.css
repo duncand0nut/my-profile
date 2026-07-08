@@ -1,3 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --font-space: 'Space Grotesk', sans-serif;
+  --font-plex: 'IBM Plex Mono', monospace;
+}
+
+:root {
+  --bg: #ffffff;
+  --surface: #f7f7f8;
+  --border: #e6e6ea;
+  --ink: #17171b;
+  --muted: #6b6b76;
+  --accent: #0e7c66;
+  --accent-soft: #e6f3ef;
+  --code-bg: #fafafa;
+  --shadow: 0 1px 2px rgba(20,20,25,.05), 0 8px 28px rgba(20,20,25,.06);
+}
+
+[data-theme="dark"] {
+  --bg: #0c0e11;
+  --surface: #14171b;
+  --border: #24282e;
+  --ink: #eceff2;
+  --muted: #8f96a0;
+  --accent: #35c39f;
+  --accent-soft: #12261f;
+  --code-bg: #101317;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 28px rgba(0,0,0,.35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.65;
+  transition: background .25s ease, color .25s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--accent);
+  vertical-align: text-bottom;
+  animation: blink 1.1s steps(1) infinite;
+}
+
+.sec-label::before {
+  content: "// ";
+  color: var(--accent);
+}
