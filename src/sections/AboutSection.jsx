@@ -1,12 +1,19 @@
+import { useInView } from '../hooks/useInView'
+
 export default function AboutSection() {
+  const [ref, visible] = useInView()
+
   return (
-    <section id="about" className="border-t border-[var(--border)]">
+    <section id="about" ref={ref} className="border-t border-[var(--border)]">
       <div className="max-w-[860px] mx-auto px-6 py-[72px]">
-        <p className="sec-label font-plex text-sm text-[var(--muted)] mb-10">
+        <p className={`sec-label font-plex text-sm text-[var(--muted)] mb-10 reveal ${visible ? 'visible' : ''}`}>
           about
         </p>
 
-        <div className="max-w-[620px] text-[var(--muted)] text-[15.5px] flex flex-col gap-4">
+        <div
+          className={`max-w-[620px] text-[var(--muted)] text-[15.5px] flex flex-col gap-4 reveal ${visible ? 'visible' : ''}`}
+          style={{ transitionDelay: '80ms' }}
+        >
           <p>
             I care about <strong className="text-[var(--ink)] font-semibold">why</strong> a
             pattern exists before I use it. I'd rather ship a plain controller than a

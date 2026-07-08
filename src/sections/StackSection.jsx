@@ -1,3 +1,5 @@
+import { useInView } from '../hooks/useInView'
+
 const stack = [
   {
     category: 'frontend',
@@ -18,16 +20,22 @@ const stack = [
 ]
 
 export default function StackSection() {
+  const [ref, visible] = useInView()
+
   return (
-    <section id="stack" className="border-t border-[var(--border)]">
+    <section id="stack" ref={ref} className="border-t border-[var(--border)]">
       <div className="max-w-[860px] mx-auto px-6 py-[72px]">
-        <p className="sec-label font-plex text-sm text-[var(--muted)] mb-10">
+        <p className={`sec-label font-plex text-sm text-[var(--muted)] mb-10 reveal ${visible ? 'visible' : ''}`}>
           stack
         </p>
 
         <div className="flex flex-col gap-8">
-          {stack.map((group) => (
-            <div key={group.category}>
+          {stack.map((group, i) => (
+            <div
+              key={group.category}
+              className={`reveal ${visible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${(i + 1) * 80}ms` }}
+            >
               <p className="font-plex text-[11px] tracking-widest uppercase text-[var(--muted)] mb-3">
                 {group.category}
               </p>

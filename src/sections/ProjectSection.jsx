@@ -1,3 +1,5 @@
+import { useInView } from '../hooks/useInView'
+
 const projects = [
   {
     type: 'e-commerce API',
@@ -26,18 +28,21 @@ const projects = [
 ]
 
 export default function ProjectSection() {
+  const [ref, visible] = useInView()
+
   return (
-    <section id="projects" className="border-t border-[var(--border)]">
+    <section id="projects" ref={ref} className="border-t border-[var(--border)]">
       <div className="max-w-[860px] mx-auto px-6 py-[72px]">
-        <p className="sec-label font-plex text-sm text-[var(--muted)] mb-10">
+        <p className={`sec-label font-plex text-sm text-[var(--muted)] mb-10 reveal ${visible ? 'visible' : ''}`}>
           projects
         </p>
 
         <div className="flex flex-col gap-4">
-          {projects.map((project) => (
+          {projects.map((project, i) => (
             <div
               key={project.name}
-              className="px-7 py-6 border border-[var(--border)] rounded-xl bg-[var(--bg)] transition-[border-color,transform] duration-150 hover:border-[var(--accent)] hover:-translate-y-0.5"
+              className={`px-7 py-6 border border-[var(--border)] rounded-xl bg-[var(--bg)] transition-[border-color,transform,opacity] duration-150 hover:border-[var(--accent)] hover:-translate-y-0.5 reveal ${visible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${(i + 1) * 90}ms` }}
             >
               <span className="block font-plex text-xs text-[var(--accent)] mb-1.5">
                 {project.type}

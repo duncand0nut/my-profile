@@ -1,14 +1,31 @@
+const anim = (delay = 0) => ({
+  animation: `heroFadeUp 0.65s cubic-bezier(0.16,1,0.3,1) ${delay}ms both`,
+})
+
 export default function HomeSection() {
   return (
-    <header id="top">
-      <div className="max-w-[860px] mx-auto px-6 pt-24 pb-[72px]">
-        <p className="font-plex text-[13px] text-[var(--accent)] tracking-[0.04em] mb-4">
+    <header id="top" className="relative overflow-hidden">
+      {/* Ambient glow */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute top-0 right-0 w-[600px] h-[600px]"
+        style={{
+          background:
+            'radial-gradient(circle at 70% 20%, color-mix(in srgb, var(--accent) 9%, transparent) 0%, transparent 60%)',
+        }}
+      />
+
+      <div className="max-w-[860px] mx-auto px-6 pt-24 pb-[72px] relative">
+        <p
+          className="font-plex text-[13px] text-[var(--accent)] tracking-[0.04em] mb-4"
+          style={anim(0)}
+        >
           Backend Developer
         </p>
 
         <h1
           className="font-space font-bold leading-[1.12] tracking-[-0.02em] mb-6 max-w-[720px]"
-          style={{ fontSize: 'clamp(34px, 6vw, 54px)' }}
+          style={{ fontSize: 'clamp(34px, 6vw, 54px)', ...anim(100) }}
         >
           I build the part of the app you don't see — and can't live without.
         </h1>
@@ -17,7 +34,7 @@ export default function HomeSection() {
           role="img"
           aria-label="Example API response describing Patrick"
           className="rounded-xl border border-[var(--border)] overflow-hidden font-plex text-[13.5px]"
-          style={{ background: 'var(--code-bg)', boxShadow: 'var(--shadow)' }}
+          style={{ background: 'var(--code-bg)', boxShadow: 'var(--shadow)', ...anim(250) }}
         >
           <div className="flex items-center gap-3 flex-wrap px-5 py-3 border-b border-[var(--border)] bg-[var(--surface)]">
             <span className="text-[var(--accent)] font-medium">GET</span>
