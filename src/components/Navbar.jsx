@@ -17,7 +17,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
         <div className="flex items-center gap-7">
           <div className="hidden sm:flex gap-6">
-            {['stack', 'projects', 'about', 'contact'].map((link) => (
+            {['about', 'experience', 'projects', 'stack', 'contact'].map((link) => (
               <a
                 key={link}
                 href={`#${link}`}

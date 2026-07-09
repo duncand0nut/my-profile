@@ -4,6 +4,7 @@ import AnimatedBackground from './components/AnimatedBackground'
 import HomeSection from './sections/HomeSection'
 import StackSection from './sections/StackSection'
 import ProjectSection from './sections/ProjectSection'
+import WorkSection from './sections/WorkSection'
 import AboutSection from './sections/AboutSection'
 import ContactSection from './sections/ContactSection'
 
@@ -22,9 +23,10 @@ export default function App() {
       <div className="relative" style={{ zIndex: 1 }}>
         <Navbar theme={theme} toggleTheme={toggleTheme} />
         <HomeSection />
-        <StackSection />
-        <ProjectSection />
         <AboutSection />
+        <WorkSection />
+        <ProjectSection />
+        <StackSection />
         <ContactSection />
         <footer className="border-t border-[var(--border)]">
           <div className="max-w-[860px] mx-auto px-6 pt-6 pb-10 font-plex text-[12.5px] text-[var(--muted)] flex justify-between flex-wrap gap-2">
